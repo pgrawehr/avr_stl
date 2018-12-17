@@ -226,6 +226,7 @@ namespace std {
 	inline long double tanh (long double x){
 		return tanhl(x);
 	}
+	
 # endif	//	 __UCLIBCXX_HAS_LONG_DOUBLE__
 #endif	//	 __CORRECT_ISO_CPP_MATH_H_PROTO
 }

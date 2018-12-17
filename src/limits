@@ -25,6 +25,9 @@
 
 #pragma GCC visibility push(default)
 
+#undef min
+#undef max
+
 namespace std{
 
 enum float_round_style{
@@ -109,8 +112,9 @@ public:
 	// General -- meaningful for all specializations.
 
 	static const bool is_specialized = false;
-	static T min();
-	static T max();
+	static constexpr T min();
+	static constexpr T lowest();
+	static constexpr T max();
 	static const int radix;
 	static const int digits;
 	static const int digits10;
@@ -148,10 +152,13 @@ public:
 	typedef bool T;
 	// General -- meaningful for all specializations.
 	static const bool is_specialized = true;
-	static T min(){
+	static constexpr T min(){
 		return false;
 	}
-	static T max(){
+	static constexpr T lowest() {
+		return false;
+	}
+	static constexpr T max(){
 		return true;
 	}
 	static const int radix = 2;
@@ -195,10 +202,13 @@ public:
 	typedef unsigned char T;
 	// General -- meaningful for all specializations.
 	static const bool is_specialized = true;
-	static T min(){
+	static constexpr T min(){
 		return 0;
 	}
-	static T max(){
+	static constexpr T lowest() {
+		return 0;
+	}
+	static constexpr T max(){
 		return UCHAR_MAX;
 	}
 	static const int radix = 2;
@@ -242,10 +252,13 @@ public:
 	typedef signed char T;
 	// General -- meaningful for all specializations.
 	static const bool is_specialized = true;
-	static T min(){
+	static constexpr T min(){
 		return SCHAR_MIN;
 	}
-	static T max(){
+	static constexpr T lowest(){
+		return SCHAR_MIN;
+	}
+	static constexpr T max(){
 		return SCHAR_MAX;
 	}
 	static const int radix = 2;
@@ -289,10 +302,13 @@ public:
 	typedef char T;
 	// General -- meaningful for all specializations.
 	static const bool is_specialized = true;
-	static T min(){
+	static constexpr T min(){
 		return CHAR_MIN;
 	}
-	static T max(){
+	static constexpr T lowest(){
+		return CHAR_MIN;
+	}
+	static constexpr T max(){
 		return CHAR_MAX;
 	}
 	static const int radix = 2;
@@ -336,10 +352,13 @@ public:
 	typedef unsigned short T;
 	// General -- meaningful for all specializations.
 	static const bool is_specialized = true;
-	static T min(){
+	static constexpr T min(){
 		return 0;
 	}
-	static T max(){
+	static constexpr T lowest(){
+		return 0;
+	}
+	static constexpr T max(){
 		return USHRT_MAX;
 	}
 	static const int radix = 2;
@@ -383,10 +402,13 @@ public:
 	typedef signed short T;
 	// General -- meaningful for all specializations.
 	static const bool is_specialized = true;
-	static T min(){
+	static constexpr T min(){
 		return SHRT_MIN;
 	}
-	static T max(){
+	static constexpr T lowest(){
+		return SHRT_MIN;
+	}
+	static constexpr T max(){
 		return SHRT_MAX;
 	}
 	static const int radix = 2;
@@ -430,10 +452,13 @@ public:
 	typedef unsigned int T;
 	// General -- meaningful for all specializations.
 	static const bool is_specialized = true;
-	static T min(){
+	static constexpr T min(){
 		return 0;
 	}
-	static T max(){
+	static constexpr T lowest(){
+		return 0;
+	}
+	static constexpr T max(){
 		return UINT_MAX;
 	}
 	static const int radix = 2;
@@ -477,10 +502,13 @@ public:
 	typedef signed int T;
 	// General -- meaningful for all specializations.
 	static const bool is_specialized = true;
-	static T min(){
+	static constexpr T min(){
 		return INT_MIN;
 	}
-	static T max(){
+	static constexpr T lowest(){
+		return INT_MIN;
+	}
+	static constexpr T max(){
 		return INT_MAX;
 	}
 	static const int radix = 2;
@@ -524,10 +552,13 @@ public:
 	typedef unsigned long int T;
 	// General -- meaningful for all specializations.
 	static const bool is_specialized = true;
-	static T min(){
+	static constexpr T min(){
 		return 0;
 	}
-	static T max(){
+	static constexpr T lowest(){
+		return 0;
+	}
+	static constexpr T max(){
 		return ULONG_MAX;
 	}
 	static const int radix = 2;
@@ -571,11 +602,114 @@ public:
 	typedef signed long int T;
 	// General -- meaningful for all specializations.
 	static const bool is_specialized = true;
-	static T min(){
+	static constexpr T min(){
 		return LONG_MIN;
 	}
-	static T max(){
+	static constexpr T lowest(){
+		return LONG_MIN;
+	}
+	static constexpr T max(){
 		return LONG_MAX;
+	}
+	static const int radix = 2;
+	static const int digits = CHAR_BIT * sizeof(T);
+	static const int digits10 = __bits_to_base_10<digits>::size;
+	static const bool is_signed = true;
+	static const bool is_integer = true;
+	static const bool is_exact = true;
+	static const bool traps = false;
+	static const bool is_modulo = true;
+	static const bool is_bounded = true;
+
+	// Floating point specific.
+
+	static T epsilon(){
+		return 0;
+	}
+	static T round_error(){
+		return 0;
+	}
+	static const int min_exponent10 = 0;
+	static const int max_exponent10 = 0;
+	static const int min_exponent = 0;
+
+	static const int max_exponent = 0;
+	static const bool has_infinity = false;
+	static const bool has_quiet_NaN = false;
+	static const bool has_signaling_NaN = false;
+	static const bool is_iec559 = false;
+	static const bool has_denorm = false;
+	static const bool tinyness_before = false;
+	static const float_round_style round_style = round_indeterminate;
+	static T denorm_min();
+	static T infinity();
+	static T quiet_NaN();
+	static T signaling_NaN();
+};
+
+template <> class numeric_limits<unsigned long long> {
+public:
+	typedef unsigned long long T;
+	// General -- meaningful for all specializations.
+	static const bool is_specialized = true;
+	static constexpr T min(){
+		return 0;
+	}
+	static constexpr T lowest(){
+		return 0;
+	}
+	static constexpr T max(){
+		return ULLONG_MAX;
+	}
+	static const int radix = 2;
+	static const int digits = CHAR_BIT * sizeof(T);
+	static const int digits10 = __bits_to_base_10<digits>::size;
+	static const bool is_signed = false;
+	static const bool is_integer = true;
+	static const bool is_exact = true;
+	static const bool traps = false;
+	static const bool is_modulo = true;
+	static const bool is_bounded = true;
+
+	// Floating point specific.
+
+	static T epsilon(){
+		return 0;
+	}
+	static T round_error(){
+		return 0;
+	}
+	static const int min_exponent10 = 0;
+	static const int max_exponent10 = 0;
+	static const int min_exponent = 0;
+
+	static const int max_exponent = 0;
+	static const bool has_infinity = false;
+	static const bool has_quiet_NaN = false;
+	static const bool has_signaling_NaN = false;
+	static const bool is_iec559 = false;
+	static const bool has_denorm = false;
+	static const bool tinyness_before = false;
+	static const float_round_style round_style = round_indeterminate;
+	static T denorm_min();
+	static T infinity();
+	static T quiet_NaN();
+	static T signaling_NaN();
+};
+
+template <> class numeric_limits<signed long long> {
+public:
+	typedef signed long long T;
+	// General -- meaningful for all specializations.
+	static const bool is_specialized = true;
+	static constexpr T min(){
+		return LLONG_MIN;
+	}
+	static constexpr T lowest(){
+		return LLONG_MIN;
+	}
+	static constexpr T max(){
+		return LLONG_MAX;
 	}
 	static const int radix = 2;
 	static const int digits = CHAR_BIT * sizeof(T);
@@ -618,8 +752,9 @@ public:
 	typedef double numeric_type;
 
 	static const bool is_specialized = true;
-	static numeric_type min () { return __DBL_MIN__; }
-	static numeric_type max () { return __DBL_MAX__; }
+	static constexpr numeric_type min () { return __DBL_MIN__; }
+	static constexpr numeric_type lowest () { return __DBL_MIN__; }
+	static constexpr numeric_type max () { return __DBL_MAX__; }
 	static const int radix = __FLT_RADIX__;
 	static const int digits = __DBL_MANT_DIG__;
 	static const int digits10 = __DBL_DIG__;

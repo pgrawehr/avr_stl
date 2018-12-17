@@ -76,6 +76,16 @@ namespace std{
 		id(){ }
 	};
 
+	template< class Facet >
+	const Facet& use_facet( const std::locale& loc ) {
+		return Facet();
+	}
+
+	template< class CharT >
+	class numpunct {
+
+	};
+
 }
 
 #pragma GCC visibility pop

@@ -35,3 +35,4 @@ core
 *.rej
 /*.patch
 /*.diff
+/.vs

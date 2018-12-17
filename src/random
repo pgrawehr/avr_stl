@@ -1,0 +1,20 @@
+#ifndef __HEADER_STD_RANDOM
+#define __HEADER_STD_RANDOM 1
+
+#pragma GCC visibility push(default)
+
+namespace std{
+	
+template<
+    class Engine, 
+    std::size_t W, 
+    class UIntType
+> class independent_bits_engine {
+
+};
+
+struct default_random_engine {};
+
+}
+
+#endif

@@ -220,6 +220,28 @@ namespace std{
 		bool f;
 	};
 
+template< class C > 
+inline auto begin( C& c ) -> decltype(c.begin()) { return c.begin(); }
+
+template< class C > 
+inline auto begin( const C& c ) -> decltype(c.begin()) { return c.begin(); }
+
+template< class T, std::size_t N > 
+inline T* begin( T (&array)[N] ) {
+	return array;
+}
+
+template< class C > 
+inline auto end( C& c ) -> decltype(c.end()) { return c.end(); }
+
+template< class C > 
+inline auto end( const C& c ) -> decltype(c.end()) { return c.end(); }
+
+template< class T, std::size_t N > 
+inline T* end( T (&array)[N] ) {
+	return array + N;
+}
+
 }
 
 #pragma GCC visibility pop
