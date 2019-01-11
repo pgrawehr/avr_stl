@@ -1,0 +1,35 @@
+//name=ArduinoSTL
+//version=1.1.0
+/author=Mike Matera <matera@lifealgorithmic.com>
+//maintainer=Mike Matera <matera@lifealgorithmic.com>
+//s/entence=A port of uClibc++ packaged as an Arduino library.
+//paragraph=This library includes important C++ functions, including cout and cin, printf and scanf. It also includes STL containers like vector and algorithm. 
+//category=Other
+//url=https://github.com/mike-matera/ArduinoSTL
+//architectures=avr,samd
+//includes=ArduinoSTL.h
+
+{
+    "name": "ArduinoSTL",
+    "keywords": "bip39, bitcoin",
+    "description": "This is a portable C++ implementation of BIP39. The goal of this project is to provide a BIP39 implementation with minimal dependencies and to be compatiable with the most number of platforms, including Arduino.",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ciband/bip39.git"
+    },
+    "authors": {
+        "name": "Chris Johnson",
+        "url": "https://github.com/ciband/bip39"
+    },
+    "dependencies": {
+
+    },
+    "version": "1.1.0",
+    "frameworks": "arduino",
+    "export": {
+        "exclude": [
+            "extras/*"
+        ]
+    }
+}
