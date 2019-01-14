@@ -1,16 +1,22 @@
 {
     "name": "ArduinoSTL",
-    "keywords": "bip39, bitcoin",
-    "description": "This is a portable C++ implementation of BIP39. The goal of this project is to provide a BIP39 implementation with minimal dependencies and to be compatiable with the most number of platforms, including Arduino.",
-    "license": "MIT",
+    "keywords": "C++, STL, Arduino",
+    "description": "A port of uClibc++ packaged as an Arduino library.  This library includes important C++ functions, including cout and cin, printf and scanf. It also includes STL containers like vector and algorithm.",
+    "license": "LGPL",
     "repository": {
         "type": "git",
-        "url": "https://github.com/ciband/bip39.git"
+        "url": "https://github.com/ciband/ArduinoSTL.git"
     },
-    "authors": {
+    "authors": [
+        {
+        "name": "Mike Matera",
+        "url": "https://github.com/mike-matera/ArduinoSTL"
+        },
+        {
         "name": "Chris Johnson",
-        "url": "https://github.com/ciband/bip39"
-    },
+        "url": "https://github.com/ciband/ArduinoSTL"
+        }
+    ],
     "dependencies": {
 
     },
