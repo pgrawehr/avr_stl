@@ -19,6 +19,7 @@
 */
 
 #include <basic_definitions>
+#include <cstddef>
 #include <memory>
 #include <iterator>
 #include <func_exception>

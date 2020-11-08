@@ -18,6 +18,7 @@
 */
 /* C++14 sized deallocation */
 
+#include <cstddef>
 #include <new>
 #include <cstdlib>
 #include <func_exception>

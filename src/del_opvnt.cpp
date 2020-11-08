@@ -17,12 +17,14 @@
 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
+#include <cstddef>
 #include <new>
 #include <cstdlib>
 #include <func_exception>
+#include <stdlib.h>
 
 #ifndef NO_NOTHROW
 _UCXXEXPORT void operator delete[](void* ptr, const std::nothrow_t& ) throw(){
-	free(ptr);
+	::free(ptr);
 }
 #endif

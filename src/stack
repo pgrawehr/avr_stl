@@ -16,6 +16,7 @@
 */
 
 #include <basic_definitions>
+#include <cstddef>
 #include <deque>
 
 #ifndef __HEADER_STD_STACK

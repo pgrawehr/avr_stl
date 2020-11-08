@@ -18,23 +18,15 @@
 */
 
 #include <basic_definitions>
-#include <exception>
 #include <cstddef>
+#include <exception>
 
 #ifndef __STD_NEW_OPERATOR
 #define __STD_NEW_OPERATOR 1
 
 #pragma GCC visibility push(default)
 
-namespace std{
-	class _UCXXEXPORT bad_alloc : public exception {};
-
-	struct _UCXXEXPORT nothrow_t {};
-	extern const nothrow_t nothrow;
-
-	typedef void (*new_handler)();
-	_UCXXEXPORT new_handler set_new_handler(new_handler new_p) throw();
-}
+// Default content of this file moved to <cstddef>, to reduce dependency issues for the Arduino compiller
 
 #if (__cplusplus < 201703L)
     _UCXXEXPORT void* operator new(std::size_t numBytes) throw(std::bad_alloc);

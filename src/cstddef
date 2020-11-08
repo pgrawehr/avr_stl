@@ -48,11 +48,28 @@
 #endif
 
 #include <stddef.h>
+#include <basic_definitions>
+
+#ifdef GCC_HASCLASSVISIBILITY
+#define _UCXXEXPORT __attribute__ ((visibility("default")))
+#define _UCXXLOCAL __attribute__ ((visibility("hidden")))
+#else
+#define _UCXXEXPORT
+#define _UCXXLOCAL
+#endif
 
 namespace std 
 {
   using ::ptrdiff_t;
   using ::size_t;
+}
+#include <exception>
+namespace std{
+	class _UCXXEXPORT bad_alloc : public exception {};
+	struct _UCXXEXPORT nothrow_t {};
+	extern const nothrow_t nothrow;
+	typedef void (*new_handler)();
+	_UCXXEXPORT new_handler set_new_handler(new_handler new_p) throw();
 }
 
 #endif
